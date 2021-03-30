@@ -1,4 +1,4 @@
-// Copyright 2020 The Chromium Authors. All rights reserved.
+// Copyright 2013 The Flutter Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
@@ -34,7 +34,7 @@ class VersionInfoQuerier {
       if (VerQueryValue(versionInfo, keyPath, valueAddress, length) == 0) {
         return null;
       }
-      return valueAddress.value.unpackString(length.value);
+      return valueAddress.value.toDartString();
     } finally {
       calloc.free(keyPath);
       calloc.free(length);
@@ -64,7 +64,7 @@ class PathProviderWindows extends PathProviderPlatform {
         final error = GetLastError();
         throw WindowsException(error);
       } else {
-        path = buffer.unpackString(length);
+        path = buffer.toDartString();
 
         // GetTempPath adds a trailing backslash, but SHGetKnownFolderPath does
         // not. Strip off trailing backslash for consistency with other methods
@@ -132,7 +132,7 @@ class PathProviderWindows extends PathProviderPlatform {
         }
       }
 
-      final path = pathPtrPtr.value.unpackString(MAX_PATH);
+      final path = pathPtrPtr.value.toDartString();
       return Future.value(path);
     } finally {
       calloc.free(pathPtrPtr);
@@ -183,8 +183,8 @@ class PathProviderWindows extends PathProviderPlatform {
 
       // If there was no product name, use the executable name.
       if (productName == null) {
-        productName = path.basenameWithoutExtension(
-            moduleNameBuffer.unpackString(moduleNameLength));
+        productName =
+            path.basenameWithoutExtension(moduleNameBuffer.toDartString());
       }
 
       return companyName != null
