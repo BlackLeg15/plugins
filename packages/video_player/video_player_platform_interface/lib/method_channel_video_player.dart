@@ -33,7 +33,7 @@ class MethodChannelVideoPlayer extends VideoPlayerPlatform {
     message.envKey = config.envKey;
     message.playerName = config.playerName;
     message.viewerUserId = config.viewerUserId;
-    message.pageType = config.pageType?.toString()?.split('.')?.last;
+    message.pageType = config.pageType?.toString().split('.').last;
     message.experimentName = config.experimentName;
     message.subPropertyId = config.subPropertyId;
     message.playerVersion = config.playerVersion;
@@ -47,7 +47,7 @@ class MethodChannelVideoPlayer extends VideoPlayerPlatform {
     message.videoContentType = config.videoContentType;
     message.videoDuration = config.videoDuration?.inMilliseconds;
     message.videoStreamType =
-        config.videoStreamType?.toString()?.split('.')?.last;
+        config.videoStreamType?.toString().split('.').last;
     message.videoProducer = config.videoProducer;
     message.videoEncodingVariant = config.videoEncodingVariant;
     message.videoCdn = config.videoCdn;
