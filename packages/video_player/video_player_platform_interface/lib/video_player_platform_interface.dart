@@ -370,8 +370,8 @@ class VideoPlayerOptions {
 class MuxConfig {
   /// constructor
   const MuxConfig({
-    @required this.envKey,
-    @required this.playerName,
+    required this.envKey,
+    required this.playerName,
     this.viewerUserId,
     this.pageType,
     this.experimentName,
@@ -402,69 +402,69 @@ class MuxConfig {
 
   /// An ID representing the viewer who is watching the stream.
   /// Use this to look up video views for an individual viewer.
-  final String viewerUserId;
+  final String? viewerUserId;
 
   /// Provide the context of the page for more specific analysis.
   /// Values include `watchpage`, `iframe`, or leave empty.
-  final MuxPageType pageType;
+  final MuxPageType? pageType;
 
   /// You can use this field to separate views into different experiments,
   /// if you would like to filter by this dimension later. This should be a string value,
   /// but your account is limited to a total of 10 unique experiment names,
   /// so be sure that this value is not generated dynamically or randomly.
-  final String experimentName;
+  final String? experimentName;
 
   /// A sub property is an optional way to group data within a property.
   /// For example, sub properties may be used by a video platform to group data by its own
   /// customers, or a media company might use them to distinguish between its many websites.
-  final String subPropertyId;
+  final String? subPropertyId;
 
   /// As you make changes to your player you can compare how new versions of your player
   /// perform by updating this value. This is not the player software version
   /// (e.g. Video.js 5.0.0), which is tracked automatically by the SDK.
-  final String playerVersion;
+  final String? playerVersion;
 
   /// If you are explicitly loading your player in page (perhaps as a response to a user interaction),
   /// include the timestamp (milliseconds since Jan 1 1970) when you initialize the player
   /// in order to accurately track page load time and player startup time.
-  final DateTime playerInitTime;
+  final DateTime? playerInitTime;
 
   /// Your internal ID for the video
-  final String videoId;
+  final String? videoId;
 
   /// example: 'Awesome Show: Pilot'
-  final String videoTitle;
+  final String? videoTitle;
 
   /// example: 'Season 1'
-  final String videoSeries;
+  final String? videoSeries;
 
   /// An optional detail that allows you to monitor issues with the files of specific versions of the content,
   /// for example different audio translations or versions with hard-coded/burned-in subtitles.
-  final String videoVariantName;
+  final String? videoVariantName;
 
   /// Your internal ID for a video variant
-  final String videoVariantId;
+  final String? videoVariantId;
 
   /// The audio language of the video, assuming it's unchangeable after playing.
-  final String videoLanguageCode;
+  final String? videoLanguageCode;
 
   /// 'short', 'movie', 'episode', 'clip', 'trailer', or 'event'
-  final String videoContentType;
+  final String? videoContentType;
 
   /// The length of the video in milliseconds
-  final Duration videoDuration;
+  final Duration? videoDuration;
 
   /// 'live' or 'onDemand'
-  final MuxVideoStreamType videoStreamType;
+  final MuxVideoStreamType? videoStreamType;
 
   /// The producer of the video title
-  final String videoProducer;
+  final String? videoProducer;
 
   /// An optional detail that allows you to compare different encoding settings.
-  final String videoEncodingVariant;
+  final String? videoEncodingVariant;
 
   /// An optional detail that allows you to compare different CDNs (assuming the CDN selection is made at page load time).
-  final String videoCdn;
+  final String? videoCdn;
 }
 
 /// Type of stream to Mux Analytics
