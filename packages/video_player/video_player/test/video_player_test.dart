@@ -71,6 +71,9 @@ class FakeController extends ValueNotifier<VideoPlayerValue>
 
   @override
   VideoPlayerOptions? get videoPlayerOptions => null;
+
+  @override
+  Future<void> setupMux(MuxConfig config) async {}
 }
 
 Future<ClosedCaptionFile> _loadClosedCaption() async =>
@@ -775,6 +778,11 @@ class FakeVideoPlayerPlatform extends TestHostVideoPlayerApi {
   @override
   void setMixWithOthers(MixWithOthersMessage arg) {
     calls.add('setMixWithOthers');
+  }
+
+  @override
+  void setupMux(MuxConfigMessage arg) {
+    calls.add('MuxConfigMessage');
   }
 }
 

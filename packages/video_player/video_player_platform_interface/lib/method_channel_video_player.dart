@@ -26,6 +26,36 @@ class MethodChannelVideoPlayer extends VideoPlayerPlatform {
   }
 
   @override
+  Future<void> setupMux(int textureId, MuxConfig config) async {
+    MuxConfigMessage message = MuxConfigMessage();
+    message.textureId = textureId;
+
+    message.envKey = config.envKey;
+    message.playerName = config.playerName;
+    message.viewerUserId = config.viewerUserId;
+    message.pageType = config.pageType?.toString().split('.').last;
+    message.experimentName = config.experimentName;
+    message.subPropertyId = config.subPropertyId;
+    message.playerVersion = config.playerVersion;
+    message.playerInitTime = config.playerInitTime?.millisecondsSinceEpoch;
+    message.videoId = config.videoId;
+    message.videoTitle = config.videoTitle;
+    message.videoSeries = config.videoSeries;
+    message.videoVariantName = config.videoVariantName;
+    message.videoVariantId = config.videoVariantId;
+    message.videoLanguageCode = config.videoLanguageCode;
+    message.videoContentType = config.videoContentType;
+    message.videoDuration = config.videoDuration?.inMilliseconds;
+    message.videoStreamType =
+        config.videoStreamType?.toString().split('.').last;
+    message.videoProducer = config.videoProducer;
+    message.videoEncodingVariant = config.videoEncodingVariant;
+    message.videoCdn = config.videoCdn;
+
+    return _api.setupMux(message);
+  }
+
+  @override
   Future<int?> create(DataSource dataSource) async {
     CreateMessage message = CreateMessage();
 

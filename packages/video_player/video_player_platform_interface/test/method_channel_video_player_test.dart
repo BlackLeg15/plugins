@@ -29,6 +29,11 @@ class _ApiLogger implements TestHostVideoPlayerApi {
   }
 
   @override
+  void setupMux(MuxConfigMessage arg) {
+    log.add('setupMux');
+  }
+
+  @override
   void dispose(TextureMessage arg) {
     log.add('dispose');
     textureMessage = arg;
