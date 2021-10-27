@@ -34,8 +34,8 @@ dependencies:
 
 dev_dependencies:
   pedantic: ^1.10.0
-  pigeon: ^0.1.21
+  pigeon: ^0.1.23
 
 environment:
-  sdk: ">=2.12.0-259.9.beta <3.0.0"
-  flutter: ">=1.12.13+hotfix.5"
+  sdk: '>=2.14.0 <3.0.0'
+  flutter: '>=2.5.0'
