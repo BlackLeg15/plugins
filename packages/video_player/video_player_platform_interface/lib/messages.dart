@@ -466,7 +466,7 @@ class VideoPlayerApi {
   Future<void> setupMux(MuxConfigMessage arg) async {
     final Object encoded = arg.encode();
     BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>('dev.flutter.pigeon.VideoPlayerApi.setupMux', StandardMessageCodec());
-    final Map<Object, Object> replyMap = await channel.send(encoded) as Map<Object, Object>;
+    final Map<Object?, Object?>? replyMap = await channel.send(encoded) as Map<Object?, Object?>?;
     if (replyMap == null) {
       throw PlatformException(
         code: 'channel-error',
@@ -474,10 +474,10 @@ class VideoPlayerApi {
         details: null,
       );
     } else if (replyMap['error'] != null) {
-      final Map<Object, Object> error = replyMap['error'] as Map<Object, Object>;
+      final Map<Object?, Object?> error = replyMap['error'] as Map<Object?, Object?>;
       throw PlatformException(
         code: error['code'] as String,
-        message: error['message'] as String,
+        message: error['message'] as String?,
         details: error['details'],
       );
     } else {
