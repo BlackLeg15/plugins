@@ -200,6 +200,7 @@ static NSDictionary<NSString*, id>* wrapResult(NSDictionary *result, FlutterErro
   return [NSDictionary
       dictionaryWithObjectsAndKeys:(self.mixWithOthers != nil ? self.mixWithOthers : [NSNull null]),
                                    @"mixWithOthers", nil];
+}
 @end
 
 @implementation FLTMuxConfigMessage
