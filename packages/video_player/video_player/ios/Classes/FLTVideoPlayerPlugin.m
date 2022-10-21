@@ -6,15 +6,11 @@
 #import <AVFoundation/AVFoundation.h>
 #import <GLKit/GLKit.h>
 #import "messages.h"
+@import MUXSDKStats;
 
 #if !__has_feature(objc_arc)
 #error Code Requires ARC.
 #endif
-
-int64_t FLTCMTimeToMillis(CMTime time) {
-  if (time.timescale == 0) return 0;
-  return time.value * 1000 / time.timescale;
-}
 
 @interface FLTFrameUpdater : NSObject
 @property(nonatomic) int64_t textureId;
@@ -105,6 +101,16 @@ static void* playbackBufferFullContext = &playbackBufferFullContext;
       _eventSink(@{@"event" : @"completed"});
     }
   }
+}
+
+const int64_t TIME_UNSET = -9223372036854775807;
+
+static inline int64_t FLTCMTimeToMillis(CMTime time) {
+  // When CMTIME_IS_INDEFINITE return a value that matches TIME_UNSET from ExoPlayer2 on Android.
+  // Fixes https://github.com/flutter/flutter/issues/48670
+  if (CMTIME_IS_INDEFINITE(time)) return TIME_UNSET;
+  if (time.timescale == 0) return 0;
+  return time.value * 1000 / time.timescale;
 }
 
 static inline CGFloat radiansToDegrees(CGFloat radians) {
@@ -520,6 +526,7 @@ static inline CGFloat radiansToDegrees(CGFloat radians) {
 - (FLTTextureMessage*)create:(FLTCreateMessage*)input error:(FlutterError**)error {
   FLTFrameUpdater* frameUpdater = [[FLTFrameUpdater alloc] initWithRegistry:_registry];
   FLTVideoPlayer* player;
+
   if (input.asset) {
     NSString* assetPath;
     if (input.packageName) {
@@ -538,6 +545,43 @@ static inline CGFloat radiansToDegrees(CGFloat radians) {
     *error = [FlutterError errorWithCode:@"video_player" message:@"not implemented" details:nil];
     return nil;
   }
+}
+
+- (void)setupMux:(FLTMuxConfigMessage*)input error:(FlutterError**)error {
+  FLTVideoPlayer* player = _players[input.textureId];
+
+  AVPlayerViewController* playerViewController = [AVPlayerViewController new];
+  playerViewController.player = player.player;
+
+  // Environment and player data that persists until the player is destroyed
+  MUXSDKCustomerPlayerData* playerData = [[MUXSDKCustomerPlayerData alloc] initWithEnvironmentKey:input.envKey];
+  playerData.playerName = input.playerName;
+  playerData.viewerUserId = input.viewerUserId;
+  playerData.experimentName = input.experimentName;
+  playerData.playerVersion = input.playerVersion;
+  playerData.pageType = input.pageType;
+  playerData.subPropertyId = input.subPropertyId;
+  playerData.playerInitTime = input.playerInitTime;
+
+  // Video metadata (cleared with videoChangeForPlayer:withVideoData:)
+  MUXSDKCustomerVideoData* videoData = [MUXSDKCustomerVideoData new];
+  videoData.videoId = input.videoId;
+  videoData.videoTitle = input.videoTitle;
+  videoData.videoSeries = input.videoSeries;
+  videoData.videoVariantName = input.videoVariantName;
+  videoData.videoVariantId = input.videoVariantId;
+  videoData.videoLanguageCode = input.videoLanguageCode;
+  videoData.videoContentType = input.videoContentType;
+  videoData.videoStreamType = input.videoStreamType;
+  videoData.videoProducer = input.videoProducer;
+  videoData.videoEncodingVariant = input.videoEncodingVariant;
+  videoData.videoCdn = input.videoCdn;
+  videoData.videoDuration = input.videoDuration;
+
+  [MUXSDKStats monitorAVPlayerViewController:playerViewController
+                              withPlayerName:input.playerName
+                                  playerData:playerData
+                                    videoData:videoData];
 }
 
 - (void)dispose:(FLTTextureMessage*)input error:(FlutterError**)error {
