@@ -110,9 +110,9 @@ public class VideoPlayerPlugin implements FlutterPlugin, AndroidVideoPlayerApi {
   }
 
   private void onDestroy() {
-    if(muxStatsExoPlayer != null){
-      muxStatsExoPlayer.release();
-    }
+    // if(muxStatsExoPlayer != null){
+    //   muxStatsExoPlayer.release();
+    // }
     // The whole FlutterView is being destroyed. Here we release resources acquired for all
     // instances
     // of VideoPlayer. Once https://github.com/flutter/flutter/issues/19358 is resolved this may
@@ -232,8 +232,8 @@ public class VideoPlayerPlugin implements FlutterPlugin, AndroidVideoPlayerApi {
     if (arg.getVideoDuration() != null)
       videoData.setVideoDuration(castVideoDuration(arg.getVideoDuration()));
 
-     muxStatsExoPlayer = new MuxStatsExoPlayer(flutterState.applicationContext, player.exoPlayer,
-        arg.getPlayerName(), playerData, videoData);
+    //  muxStatsExoPlayer = new MuxStatsExoPlayer(flutterState.applicationContext, player.exoPlayer,
+    //     arg.getPlayerName(), playerData, videoData);
   }
 
   public void dispose(TextureMessage arg) {
