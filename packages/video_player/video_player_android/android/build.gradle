@@ -19,7 +19,7 @@ rootProject.allprojects {
         mavenCentral()
 
         flatDir {
-            dirs project(':video_player').file('libs')
+            dirs project(':video_player_android').file('libs')
         }
     }
 }
