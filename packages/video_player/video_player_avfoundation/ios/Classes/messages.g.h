@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class FLTPositionMessage;
 @class FLTCreateMessage;
 @class FLTMixWithOthersMessage;
+@class FLTMuxConfigMessage;
 
 @interface FLTTextureMessage : NSObject
 /// `init` unavailable to enforce nonnull fields, see the `make` class method.
@@ -78,6 +79,30 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)makeWithMixWithOthers:(NSNumber *)mixWithOthers;
 @property(nonatomic, strong) NSNumber *mixWithOthers;
+@end
+
+@interface FLTMuxConfigMessage : NSObject
+@property(nonatomic, strong, nullable) NSNumber * textureId;
+@property(nonatomic, copy, nullable) NSString * envKey;
+@property(nonatomic, copy, nullable) NSString * playerName;
+@property(nonatomic, copy, nullable) NSString * viewerUserId;
+@property(nonatomic, copy, nullable) NSString * pageType;
+@property(nonatomic, copy, nullable) NSString * experimentName;
+@property(nonatomic, copy, nullable) NSString * subPropertyId;
+@property(nonatomic, copy, nullable) NSString * playerVersion;
+@property(nonatomic, strong, nullable) NSNumber * playerInitTime;
+@property(nonatomic, copy, nullable) NSString * videoId;
+@property(nonatomic, copy, nullable) NSString * videoTitle;
+@property(nonatomic, copy, nullable) NSString * videoSeries;
+@property(nonatomic, copy, nullable) NSString * videoVariantName;
+@property(nonatomic, copy, nullable) NSString * videoVariantId;
+@property(nonatomic, copy, nullable) NSString * videoLanguageCode;
+@property(nonatomic, copy, nullable) NSString * videoContentType;
+@property(nonatomic, strong, nullable) NSNumber * videoDuration;
+@property(nonatomic, copy, nullable) NSString * videoStreamType;
+@property(nonatomic, copy, nullable) NSString * videoProducer;
+@property(nonatomic, copy, nullable) NSString * videoEncodingVariant;
+@property(nonatomic, copy, nullable) NSString * videoCdn;
 @end
 
 /// The codec used by FLTAVFoundationVideoPlayerApi.

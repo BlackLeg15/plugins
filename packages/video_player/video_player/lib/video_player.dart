@@ -14,7 +14,7 @@ import 'package:video_player_platform_interface/video_player_platform_interface.
 import 'src/closed_caption_file.dart';
 
 export 'package:video_player_platform_interface/video_player_platform_interface.dart'
-    show DurationRange, DataSourceType, VideoFormat, VideoPlayerOptions;
+    show DurationRange, DataSourceType, VideoFormat, VideoPlayerOptions, MuxConfig, MuxPageType, MuxVideoStreamType;
 
 export 'src/closed_caption_file.dart';
 
@@ -442,6 +442,15 @@ class VideoPlayerController extends ValueNotifier<VideoPlayerValue> {
     }
     _isDisposed = true;
     super.dispose();
+  }
+
+  /// Sets the config for Mux
+  Future<void> setupMux(MuxConfig config) async {
+    if (!value.isInitialized || _isDisposed) {
+      return;
+    }
+
+    await _videoPlayerPlatform.setupMux(_textureId, config);
   }
 
   /// Starts playing the video.

@@ -557,6 +557,165 @@ public class Messages {
     }
   }
 
+    /** Generated class from Pigeon that represents data sent in messages. */
+  public static class MuxConfigMessage {
+    private Long textureId;
+    public Long getTextureId() { return textureId; }
+    public void setTextureId(Long setterArg) { this.textureId = setterArg; }
+
+    private String envKey;
+    public String getEnvKey() { return envKey; }
+    public void setEnvKey(String setterArg) { this.envKey = setterArg; }
+
+    private String playerName;
+    public String getPlayerName() { return playerName; }
+    public void setPlayerName(String setterArg) { this.playerName = setterArg; }
+
+    private String viewerUserId;
+    public String getViewerUserId() { return viewerUserId; }
+    public void setViewerUserId(String setterArg) { this.viewerUserId = setterArg; }
+
+    private String pageType;
+    public String getPageType() { return pageType; }
+    public void setPageType(String setterArg) { this.pageType = setterArg; }
+
+    private String experimentName;
+    public String getExperimentName() { return experimentName; }
+    public void setExperimentName(String setterArg) { this.experimentName = setterArg; }
+
+    private String subPropertyId;
+    public String getSubPropertyId() { return subPropertyId; }
+    public void setSubPropertyId(String setterArg) { this.subPropertyId = setterArg; }
+
+    private String playerVersion;
+    public String getPlayerVersion() { return playerVersion; }
+    public void setPlayerVersion(String setterArg) { this.playerVersion = setterArg; }
+
+    private Long playerInitTime;
+    public Long getPlayerInitTime() { return playerInitTime; }
+    public void setPlayerInitTime(Long setterArg) { this.playerInitTime = setterArg; }
+
+    private String videoId;
+    public String getVideoId() { return videoId; }
+    public void setVideoId(String setterArg) { this.videoId = setterArg; }
+
+    private String videoTitle;
+    public String getVideoTitle() { return videoTitle; }
+    public void setVideoTitle(String setterArg) { this.videoTitle = setterArg; }
+
+    private String videoSeries;
+    public String getVideoSeries() { return videoSeries; }
+    public void setVideoSeries(String setterArg) { this.videoSeries = setterArg; }
+
+    private String videoVariantName;
+    public String getVideoVariantName() { return videoVariantName; }
+    public void setVideoVariantName(String setterArg) { this.videoVariantName = setterArg; }
+
+    private String videoVariantId;
+    public String getVideoVariantId() { return videoVariantId; }
+    public void setVideoVariantId(String setterArg) { this.videoVariantId = setterArg; }
+
+    private String videoLanguageCode;
+    public String getVideoLanguageCode() { return videoLanguageCode; }
+    public void setVideoLanguageCode(String setterArg) { this.videoLanguageCode = setterArg; }
+
+    private String videoContentType;
+    public String getVideoContentType() { return videoContentType; }
+    public void setVideoContentType(String setterArg) { this.videoContentType = setterArg; }
+
+    private Long videoDuration;
+    public Long getVideoDuration() { return videoDuration; }
+    public void setVideoDuration(Long setterArg) { this.videoDuration = setterArg; }
+
+    private String videoStreamType;
+    public String getVideoStreamType() { return videoStreamType; }
+    public void setVideoStreamType(String setterArg) { this.videoStreamType = setterArg; }
+
+    private String videoProducer;
+    public String getVideoProducer() { return videoProducer; }
+    public void setVideoProducer(String setterArg) { this.videoProducer = setterArg; }
+
+    private String videoEncodingVariant;
+    public String getVideoEncodingVariant() { return videoEncodingVariant; }
+    public void setVideoEncodingVariant(String setterArg) { this.videoEncodingVariant = setterArg; }
+
+    private String videoCdn;
+    public String getVideoCdn() { return videoCdn; }
+    public void setVideoCdn(String setterArg) { this.videoCdn = setterArg; }
+
+    HashMap toMap() {
+      HashMap<String, Object> toMapResult = new HashMap<>();
+      toMapResult.put("textureId", textureId);
+      toMapResult.put("envKey", envKey);
+      toMapResult.put("playerName", playerName);
+      toMapResult.put("viewerUserId", viewerUserId);
+      toMapResult.put("pageType", pageType);
+      toMapResult.put("experimentName", experimentName);
+      toMapResult.put("subPropertyId", subPropertyId);
+      toMapResult.put("playerVersion", playerVersion);
+      toMapResult.put("playerInitTime", playerInitTime);
+      toMapResult.put("videoId", videoId);
+      toMapResult.put("videoTitle", videoTitle);
+      toMapResult.put("videoSeries", videoSeries);
+      toMapResult.put("videoVariantName", videoVariantName);
+      toMapResult.put("videoVariantId", videoVariantId);
+      toMapResult.put("videoLanguageCode", videoLanguageCode);
+      toMapResult.put("videoContentType", videoContentType);
+      toMapResult.put("videoDuration", videoDuration);
+      toMapResult.put("videoStreamType", videoStreamType);
+      toMapResult.put("videoProducer", videoProducer);
+      toMapResult.put("videoEncodingVariant", videoEncodingVariant);
+      toMapResult.put("videoCdn", videoCdn);
+      return toMapResult;
+    }
+    static MuxConfigMessage fromMap(HashMap map) {
+      MuxConfigMessage fromMapResult = new MuxConfigMessage();
+      Object textureId = map.get("textureId");
+      fromMapResult.textureId = (textureId == null) ? null : ((textureId instanceof Integer) ? (Integer)textureId : (Long)textureId);
+      Object envKey = map.get("envKey");
+      fromMapResult.envKey = (String)envKey;
+      Object playerName = map.get("playerName");
+      fromMapResult.playerName = (String)playerName;
+      Object viewerUserId = map.get("viewerUserId");
+      fromMapResult.viewerUserId = (String)viewerUserId;
+      Object pageType = map.get("pageType");
+      fromMapResult.pageType = (String)pageType;
+      Object experimentName = map.get("experimentName");
+      fromMapResult.experimentName = (String)experimentName;
+      Object subPropertyId = map.get("subPropertyId");
+      fromMapResult.subPropertyId = (String)subPropertyId;
+      Object playerVersion = map.get("playerVersion");
+      fromMapResult.playerVersion = (String)playerVersion;
+      Object playerInitTime = map.get("playerInitTime");
+      fromMapResult.playerInitTime = (playerInitTime == null) ? null : ((playerInitTime instanceof Integer) ? (Integer)playerInitTime : (Long)playerInitTime);
+      Object videoId = map.get("videoId");
+      fromMapResult.videoId = (String)videoId;
+      Object videoTitle = map.get("videoTitle");
+      fromMapResult.videoTitle = (String)videoTitle;
+      Object videoSeries = map.get("videoSeries");
+      fromMapResult.videoSeries = (String)videoSeries;
+      Object videoVariantName = map.get("videoVariantName");
+      fromMapResult.videoVariantName = (String)videoVariantName;
+      Object videoVariantId = map.get("videoVariantId");
+      fromMapResult.videoVariantId = (String)videoVariantId;
+      Object videoLanguageCode = map.get("videoLanguageCode");
+      fromMapResult.videoLanguageCode = (String)videoLanguageCode;
+      Object videoContentType = map.get("videoContentType");
+      fromMapResult.videoContentType = (String)videoContentType;
+      Object videoDuration = map.get("videoDuration");
+      fromMapResult.videoDuration = (videoDuration == null) ? null : ((videoDuration instanceof Integer) ? (Integer)videoDuration : (Long)videoDuration);
+      Object videoStreamType = map.get("videoStreamType");
+      fromMapResult.videoStreamType = (String)videoStreamType;
+      Object videoProducer = map.get("videoProducer");
+      fromMapResult.videoProducer = (String)videoProducer;
+      Object videoEncodingVariant = map.get("videoEncodingVariant");
+      fromMapResult.videoEncodingVariant = (String)videoEncodingVariant;
+      Object videoCdn = map.get("videoCdn");
+      fromMapResult.videoCdn = (String)videoCdn;
+      return fromMapResult;
+    }
+  }
+
   private static class AndroidVideoPlayerApiCodec extends StandardMessageCodec {
     public static final AndroidVideoPlayerApiCodec INSTANCE = new AndroidVideoPlayerApiCodec();
 
@@ -645,6 +804,8 @@ public class Messages {
     void pause(@NonNull TextureMessage msg);
 
     void setMixWithOthers(@NonNull MixWithOthersMessage msg);
+
+    void setupMux(MuxConfigMessage arg);
 
     /** The codec used by AndroidVideoPlayerApi. */
     static MessageCodec<Object> getCodec() {
@@ -920,6 +1081,32 @@ public class Messages {
                     throw new NullPointerException("msgArg unexpectedly null.");
                   }
                   api.setMixWithOthers(msgArg);
+                  wrapped.put("result", null);
+                } catch (Error | RuntimeException exception) {
+                  wrapped.put("error", wrapError(exception));
+                }
+                reply.reply(wrapped);
+              });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(
+                binaryMessenger,
+                "dev.flutter.pigeon.AndroidVideoPlayerApi.setupMux",
+                getCodec());
+        if (api != null) {
+          channel.setMessageHandler(
+              (message, reply) -> {
+                Map<String, Object> wrapped = new HashMap<>();
+                try {
+                  MuxConfigMessage msgArg = MuxConfigMessage.fromMap((HashMap)message);
+                  if (msgArg == null) {
+                    throw new NullPointerException("msgArg unexpectedly null.");
+                  }
+                  api.setupMux(msgArg);
                   wrapped.put("result", null);
                 } catch (Error | RuntimeException exception) {
                   wrapped.put("error", wrapError(exception));

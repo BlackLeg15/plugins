@@ -61,6 +61,10 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
 + (FLTMixWithOthersMessage *)fromMap:(NSDictionary *)dict;
 - (NSDictionary *)toMap;
 @end
+@interface FLTMuxConfigMessage ()
++ (FLTMuxConfigMessage *)fromMap:(NSDictionary *)dict;
+- (NSDictionary *)toMap;
+@end
 
 @implementation FLTTextureMessage
 + (instancetype)makeWithTextureId:(NSNumber *)textureId {
@@ -224,6 +228,100 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
   return [NSDictionary
       dictionaryWithObjectsAndKeys:(self.mixWithOthers ? self.mixWithOthers : [NSNull null]),
                                    @"mixWithOthers", nil];
+}
+@end
+
+@implementation FLTMuxConfigMessage
++(FLTMuxConfigMessage*)fromMap:(NSDictionary*)dict {
+  FLTMuxConfigMessage* result = [[FLTMuxConfigMessage alloc] init];
+  result.textureId = dict[@"textureId"];
+  if ((NSNull *)result.textureId == [NSNull null]) {
+    result.textureId = nil;
+  }
+  result.envKey = dict[@"envKey"];
+  if ((NSNull *)result.envKey == [NSNull null]) {
+    result.envKey = nil;
+  }
+  result.playerName = dict[@"playerName"];
+  if ((NSNull *)result.playerName == [NSNull null]) {
+    result.playerName = nil;
+  }
+  result.viewerUserId = dict[@"viewerUserId"];
+  if ((NSNull *)result.viewerUserId == [NSNull null]) {
+    result.viewerUserId = nil;
+  }
+  result.pageType = dict[@"pageType"];
+  if ((NSNull *)result.pageType == [NSNull null]) {
+    result.pageType = nil;
+  }
+  result.experimentName = dict[@"experimentName"];
+  if ((NSNull *)result.experimentName == [NSNull null]) {
+    result.experimentName = nil;
+  }
+  result.subPropertyId = dict[@"subPropertyId"];
+  if ((NSNull *)result.subPropertyId == [NSNull null]) {
+    result.subPropertyId = nil;
+  }
+  result.playerVersion = dict[@"playerVersion"];
+  if ((NSNull *)result.playerVersion == [NSNull null]) {
+    result.playerVersion = nil;
+  }
+  result.playerInitTime = dict[@"playerInitTime"];
+  if ((NSNull *)result.playerInitTime == [NSNull null]) {
+    result.playerInitTime = nil;
+  }
+  result.videoId = dict[@"videoId"];
+  if ((NSNull *)result.videoId == [NSNull null]) {
+    result.videoId = nil;
+  }
+  result.videoTitle = dict[@"videoTitle"];
+  if ((NSNull *)result.videoTitle == [NSNull null]) {
+    result.videoTitle = nil;
+  }
+  result.videoSeries = dict[@"videoSeries"];
+  if ((NSNull *)result.videoSeries == [NSNull null]) {
+    result.videoSeries = nil;
+  }
+  result.videoVariantName = dict[@"videoVariantName"];
+  if ((NSNull *)result.videoVariantName == [NSNull null]) {
+    result.videoVariantName = nil;
+  }
+  result.videoVariantId = dict[@"videoVariantId"];
+  if ((NSNull *)result.videoVariantId == [NSNull null]) {
+    result.videoVariantId = nil;
+  }
+  result.videoLanguageCode = dict[@"videoLanguageCode"];
+  if ((NSNull *)result.videoLanguageCode == [NSNull null]) {
+    result.videoLanguageCode = nil;
+  }
+  result.videoContentType = dict[@"videoContentType"];
+  if ((NSNull *)result.videoContentType == [NSNull null]) {
+    result.videoContentType = nil;
+  }
+  result.videoDuration = dict[@"videoDuration"];
+  if ((NSNull *)result.videoDuration == [NSNull null]) {
+    result.videoDuration = nil;
+  }
+  result.videoStreamType = dict[@"videoStreamType"];
+  if ((NSNull *)result.videoStreamType == [NSNull null]) {
+    result.videoStreamType = nil;
+  }
+  result.videoProducer = dict[@"videoProducer"];
+  if ((NSNull *)result.videoProducer == [NSNull null]) {
+    result.videoProducer = nil;
+  }
+  result.videoEncodingVariant = dict[@"videoEncodingVariant"];
+  if ((NSNull *)result.videoEncodingVariant == [NSNull null]) {
+    result.videoEncodingVariant = nil;
+  }
+  result.videoCdn = dict[@"videoCdn"];
+  if ((NSNull *)result.videoCdn == [NSNull null]) {
+    result.videoCdn = nil;
+  }
+  return result;
+}
+-(NSDictionary*)toMap {
+  return [NSDictionary dictionaryWithObjectsAndKeys:(self.textureId ? self.textureId : [NSNull null]), @"textureId", (self.envKey ? self.envKey : [NSNull null]), @"envKey", (self.playerName ? self.playerName : [NSNull null]), @"playerName", (self.viewerUserId ? self.viewerUserId : [NSNull null]), @"viewerUserId", (self.pageType ? self.pageType : [NSNull null]), @"pageType", (self.experimentName ? self.experimentName : [NSNull null]), @"experimentName", (self.subPropertyId ? self.subPropertyId : [NSNull null]), @"subPropertyId", (self.playerVersion ? self.playerVersion : [NSNull null]), @"playerVersion", (self.playerInitTime ? self.playerInitTime : [NSNull null]), @"playerInitTime", (self.videoId ? self.videoId : [NSNull null]), @"videoId", (self.videoTitle ? self.videoTitle : [NSNull null]), @"videoTitle", (self.videoSeries ? self.videoSeries : [NSNull null]), @"videoSeries", (self.videoVariantName ? self.videoVariantName : [NSNull null]), @"videoVariantName", (self.videoVariantId ? self.videoVariantId : [NSNull null]), @"videoVariantId", (self.videoLanguageCode ? self.videoLanguageCode : [NSNull null]), @"videoLanguageCode", (self.videoContentType ? self.videoContentType : [NSNull null]), @"videoContentType", (self.videoDuration ? self.videoDuration : [NSNull null]), @"videoDuration", (self.videoStreamType ? self.videoStreamType : [NSNull null]), @"videoStreamType", (self.videoProducer ? self.videoProducer : [NSNull null]), @"videoProducer", (self.videoEncodingVariant ? self.videoEncodingVariant : [NSNull null]), @"videoEncodingVariant", (self.videoCdn ? self.videoCdn : [NSNull null]), @"videoCdn", nil];
 }
 @end
 
@@ -535,6 +633,27 @@ void FLTAVFoundationVideoPlayerApiSetup(id<FlutterBinaryMessenger> binaryMesseng
         FLTMixWithOthersMessage *arg_msg = GetNullableObjectAtIndex(args, 0);
         FlutterError *error;
         [api setMixWithOthers:arg_msg error:&error];
+        callback(wrapResult(nil, error));
+      }];
+    } else {
+      [channel setMessageHandler:nil];
+    }
+  }
+  {
+    FlutterBasicMessageChannel *channel = [[FlutterBasicMessageChannel alloc]
+           initWithName:@"dev.flutter.pigeon.AVFoundationVideoPlayerApi.setupMux"
+        binaryMessenger:binaryMessenger
+                  codec:FLTAVFoundationVideoPlayerApiGetCodec()];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(setupMux:error:)],
+                @"FLTAVFoundationVideoPlayerApi api (%@) doesn't respond to "
+                @"@selector(setupMux:error:)",
+                api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        NSArray *args = message;
+        FLTMixWithOthersMessage *arg_msg = GetNullableObjectAtIndex(args, 0);
+        FlutterError *error;
+        [api setupMux:arg_msg error:&error];
         callback(wrapResult(nil, error));
       }];
     } else {

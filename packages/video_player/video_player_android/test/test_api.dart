@@ -91,12 +91,11 @@ abstract class TestHostVideoPlayerApi {
   void seekTo(PositionMessage msg);
   void pause(TextureMessage msg);
   void setMixWithOthers(MixWithOthersMessage msg);
-  static void setup(TestHostVideoPlayerApi? api,
-      {BinaryMessenger? binaryMessenger}) {
+  void setupMux(MuxConfigMessage msg);
+  static void setup(TestHostVideoPlayerApi? api, {BinaryMessenger? binaryMessenger}) {
     {
-      final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-          'dev.flutter.pigeon.AndroidVideoPlayerApi.initialize', codec,
-          binaryMessenger: binaryMessenger);
+      final BasicMessageChannel<Object?> channel =
+          BasicMessageChannel<Object?>('dev.flutter.pigeon.AndroidVideoPlayerApi.initialize', codec, binaryMessenger: binaryMessenger);
       if (api == null) {
         channel.setMockMessageHandler(null);
       } else {
@@ -108,53 +107,47 @@ abstract class TestHostVideoPlayerApi {
       }
     }
     {
-      final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-          'dev.flutter.pigeon.AndroidVideoPlayerApi.create', codec,
-          binaryMessenger: binaryMessenger);
+      final BasicMessageChannel<Object?> channel =
+          BasicMessageChannel<Object?>('dev.flutter.pigeon.AndroidVideoPlayerApi.create', codec, binaryMessenger: binaryMessenger);
       if (api == null) {
         channel.setMockMessageHandler(null);
       } else {
         channel.setMockMessageHandler((Object? message) async {
-          assert(message != null,
-              'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.create was null.');
+          assert(message != null, 'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.create was null.');
           final List<Object?> args = (message as List<Object?>?)!;
           final CreateMessage? arg_msg = (args[0] as CreateMessage?);
-          assert(arg_msg != null,
-              'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.create was null, expected non-null CreateMessage.');
+          assert(
+              arg_msg != null, 'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.create was null, expected non-null CreateMessage.');
           final TextureMessage output = api.create(arg_msg!);
           return <Object?, Object?>{'result': output};
         });
       }
     }
     {
-      final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-          'dev.flutter.pigeon.AndroidVideoPlayerApi.dispose', codec,
-          binaryMessenger: binaryMessenger);
+      final BasicMessageChannel<Object?> channel =
+          BasicMessageChannel<Object?>('dev.flutter.pigeon.AndroidVideoPlayerApi.dispose', codec, binaryMessenger: binaryMessenger);
       if (api == null) {
         channel.setMockMessageHandler(null);
       } else {
         channel.setMockMessageHandler((Object? message) async {
-          assert(message != null,
-              'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.dispose was null.');
+          assert(message != null, 'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.dispose was null.');
           final List<Object?> args = (message as List<Object?>?)!;
           final TextureMessage? arg_msg = (args[0] as TextureMessage?);
-          assert(arg_msg != null,
-              'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.dispose was null, expected non-null TextureMessage.');
+          assert(
+              arg_msg != null, 'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.dispose was null, expected non-null TextureMessage.');
           api.dispose(arg_msg!);
           return <Object?, Object?>{};
         });
       }
     }
     {
-      final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-          'dev.flutter.pigeon.AndroidVideoPlayerApi.setLooping', codec,
-          binaryMessenger: binaryMessenger);
+      final BasicMessageChannel<Object?> channel =
+          BasicMessageChannel<Object?>('dev.flutter.pigeon.AndroidVideoPlayerApi.setLooping', codec, binaryMessenger: binaryMessenger);
       if (api == null) {
         channel.setMockMessageHandler(null);
       } else {
         channel.setMockMessageHandler((Object? message) async {
-          assert(message != null,
-              'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.setLooping was null.');
+          assert(message != null, 'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.setLooping was null.');
           final List<Object?> args = (message as List<Object?>?)!;
           final LoopingMessage? arg_msg = (args[0] as LoopingMessage?);
           assert(arg_msg != null,
@@ -165,15 +158,13 @@ abstract class TestHostVideoPlayerApi {
       }
     }
     {
-      final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-          'dev.flutter.pigeon.AndroidVideoPlayerApi.setVolume', codec,
-          binaryMessenger: binaryMessenger);
+      final BasicMessageChannel<Object?> channel =
+          BasicMessageChannel<Object?>('dev.flutter.pigeon.AndroidVideoPlayerApi.setVolume', codec, binaryMessenger: binaryMessenger);
       if (api == null) {
         channel.setMockMessageHandler(null);
       } else {
         channel.setMockMessageHandler((Object? message) async {
-          assert(message != null,
-              'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.setVolume was null.');
+          assert(message != null, 'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.setVolume was null.');
           final List<Object?> args = (message as List<Object?>?)!;
           final VolumeMessage? arg_msg = (args[0] as VolumeMessage?);
           assert(arg_msg != null,
@@ -191,11 +182,9 @@ abstract class TestHostVideoPlayerApi {
         channel.setMockMessageHandler(null);
       } else {
         channel.setMockMessageHandler((Object? message) async {
-          assert(message != null,
-              'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.setPlaybackSpeed was null.');
+          assert(message != null, 'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.setPlaybackSpeed was null.');
           final List<Object?> args = (message as List<Object?>?)!;
-          final PlaybackSpeedMessage? arg_msg =
-              (args[0] as PlaybackSpeedMessage?);
+          final PlaybackSpeedMessage? arg_msg = (args[0] as PlaybackSpeedMessage?);
           assert(arg_msg != null,
               'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.setPlaybackSpeed was null, expected non-null PlaybackSpeedMessage.');
           api.setPlaybackSpeed(arg_msg!);
@@ -204,34 +193,29 @@ abstract class TestHostVideoPlayerApi {
       }
     }
     {
-      final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-          'dev.flutter.pigeon.AndroidVideoPlayerApi.play', codec,
-          binaryMessenger: binaryMessenger);
+      final BasicMessageChannel<Object?> channel =
+          BasicMessageChannel<Object?>('dev.flutter.pigeon.AndroidVideoPlayerApi.play', codec, binaryMessenger: binaryMessenger);
       if (api == null) {
         channel.setMockMessageHandler(null);
       } else {
         channel.setMockMessageHandler((Object? message) async {
-          assert(message != null,
-              'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.play was null.');
+          assert(message != null, 'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.play was null.');
           final List<Object?> args = (message as List<Object?>?)!;
           final TextureMessage? arg_msg = (args[0] as TextureMessage?);
-          assert(arg_msg != null,
-              'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.play was null, expected non-null TextureMessage.');
+          assert(arg_msg != null, 'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.play was null, expected non-null TextureMessage.');
           api.play(arg_msg!);
           return <Object?, Object?>{};
         });
       }
     }
     {
-      final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-          'dev.flutter.pigeon.AndroidVideoPlayerApi.position', codec,
-          binaryMessenger: binaryMessenger);
+      final BasicMessageChannel<Object?> channel =
+          BasicMessageChannel<Object?>('dev.flutter.pigeon.AndroidVideoPlayerApi.position', codec, binaryMessenger: binaryMessenger);
       if (api == null) {
         channel.setMockMessageHandler(null);
       } else {
         channel.setMockMessageHandler((Object? message) async {
-          assert(message != null,
-              'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.position was null.');
+          assert(message != null, 'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.position was null.');
           final List<Object?> args = (message as List<Object?>?)!;
           final TextureMessage? arg_msg = (args[0] as TextureMessage?);
           assert(arg_msg != null,
@@ -242,38 +226,34 @@ abstract class TestHostVideoPlayerApi {
       }
     }
     {
-      final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-          'dev.flutter.pigeon.AndroidVideoPlayerApi.seekTo', codec,
-          binaryMessenger: binaryMessenger);
+      final BasicMessageChannel<Object?> channel =
+          BasicMessageChannel<Object?>('dev.flutter.pigeon.AndroidVideoPlayerApi.seekTo', codec, binaryMessenger: binaryMessenger);
       if (api == null) {
         channel.setMockMessageHandler(null);
       } else {
         channel.setMockMessageHandler((Object? message) async {
-          assert(message != null,
-              'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.seekTo was null.');
+          assert(message != null, 'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.seekTo was null.');
           final List<Object?> args = (message as List<Object?>?)!;
           final PositionMessage? arg_msg = (args[0] as PositionMessage?);
-          assert(arg_msg != null,
-              'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.seekTo was null, expected non-null PositionMessage.');
+          assert(
+              arg_msg != null, 'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.seekTo was null, expected non-null PositionMessage.');
           api.seekTo(arg_msg!);
           return <Object?, Object?>{};
         });
       }
     }
     {
-      final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-          'dev.flutter.pigeon.AndroidVideoPlayerApi.pause', codec,
-          binaryMessenger: binaryMessenger);
+      final BasicMessageChannel<Object?> channel =
+          BasicMessageChannel<Object?>('dev.flutter.pigeon.AndroidVideoPlayerApi.pause', codec, binaryMessenger: binaryMessenger);
       if (api == null) {
         channel.setMockMessageHandler(null);
       } else {
         channel.setMockMessageHandler((Object? message) async {
-          assert(message != null,
-              'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.pause was null.');
+          assert(message != null, 'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.pause was null.');
           final List<Object?> args = (message as List<Object?>?)!;
           final TextureMessage? arg_msg = (args[0] as TextureMessage?);
-          assert(arg_msg != null,
-              'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.pause was null, expected non-null TextureMessage.');
+          assert(
+              arg_msg != null, 'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.pause was null, expected non-null TextureMessage.');
           api.pause(arg_msg!);
           return <Object?, Object?>{};
         });
@@ -287,14 +267,28 @@ abstract class TestHostVideoPlayerApi {
         channel.setMockMessageHandler(null);
       } else {
         channel.setMockMessageHandler((Object? message) async {
-          assert(message != null,
-              'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.setMixWithOthers was null.');
+          assert(message != null, 'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.setMixWithOthers was null.');
           final List<Object?> args = (message as List<Object?>?)!;
-          final MixWithOthersMessage? arg_msg =
-              (args[0] as MixWithOthersMessage?);
+          final MixWithOthersMessage? arg_msg = (args[0] as MixWithOthersMessage?);
           assert(arg_msg != null,
               'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.setMixWithOthers was null, expected non-null MixWithOthersMessage.');
           api.setMixWithOthers(arg_msg!);
+          return <Object?, Object?>{};
+        });
+      }
+    }
+    {
+      final BasicMessageChannel<Object?> channel =
+          BasicMessageChannel<Object?>('dev.flutter.pigeon.AndroidVideoPlayerApi.setupMux', codec, binaryMessenger: binaryMessenger);
+      if (api == null) {
+        channel.setMockMessageHandler(null);
+      } else {
+        channel.setMockMessageHandler((Object? message) async {
+          assert(message != null, 'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.setupMux was null.');
+          final MuxConfigMessage arg_msg = MuxConfigMessage.decode(message!);
+          assert(arg_msg != null,
+              'Argument for dev.flutter.pigeon.AndroidVideoPlayerApi.setupMux was null, expected non-null MuxConfigMessage.');
+          api.setupMux(arg_msg);
           return <Object?, Object?>{};
         });
       }

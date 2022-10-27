@@ -9,6 +9,7 @@
 
 #import "AVAssetTrackUtils.h"
 #import "messages.g.h"
+@import MUXSDKStats;
 
 #if !__has_feature(objc_arc)
 #error Code Requires ARC.
@@ -585,6 +586,44 @@ NS_INLINE UIViewController *rootViewController() {
     *error = [FlutterError errorWithCode:@"video_player" message:@"not implemented" details:nil];
     return nil;
   }
+}
+
+- (void)setupMux:(FLTMuxConfigMessage*)input error:(FlutterError**)error {
+  FLTVideoPlayer* player = _players[input.textureId];
+
+  AVPlayerViewController* playerViewController = [AVPlayerViewController new];
+  playerViewController.player = player.player;
+
+  // Environment and player data that persists until the player is destroyed
+    MUXSDKCustomerPlayerData* playerData = [[MUXSDKCustomerPlayerData alloc] initWithEnvironmentKey:input.envKey];
+    playerData.playerName = input.playerName;
+    playerData.viewerUserId = input.viewerUserId;
+    playerData.experimentName = input.experimentName;
+    playerData.playerVersion = input.playerVersion;
+    playerData.pageType = input.pageType;
+    playerData.subPropertyId = input.subPropertyId;
+    playerData.playerInitTime = input.playerInitTime;
+
+    // Video metadata (cleared with videoChangeForPlayer:withVideoData:)
+    MUXSDKCustomerVideoData* videoData = [MUXSDKCustomerVideoData new];
+    videoData.videoId = input.videoId;
+    videoData.videoTitle = input.videoTitle;
+    videoData.videoSeries = input.videoSeries;
+    videoData.videoVariantName = input.videoVariantName;
+    videoData.videoVariantId = input.videoVariantId;
+    videoData.videoLanguageCode = input.videoLanguageCode;
+    videoData.videoContentType = input.videoContentType;
+    videoData.videoStreamType = input.videoStreamType;
+    videoData.videoProducer = input.videoProducer;
+    videoData.videoEncodingVariant = input.videoEncodingVariant;
+    videoData.videoCdn = input.videoCdn;
+    videoData.videoDuration = input.videoDuration;
+
+
+    [MUXSDKStats monitorAVPlayerViewController:playerViewController
+                                withPlayerName:input.playerName
+                                    playerData:playerData
+                                     videoData:videoData];
 }
 
 - (void)dispose:(FLTTextureMessage *)input error:(FlutterError **)error {

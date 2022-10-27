@@ -31,6 +31,35 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
   }
 
   @override
+  Future<void> setupMux(int textureId, MuxConfig config) async {
+    final MuxConfigMessage message = MuxConfigMessage();
+    message.textureId = textureId;
+
+    message.envKey = config.envKey;
+    message.playerName = config.playerName;
+    message.viewerUserId = config.viewerUserId;
+    message.pageType = config.pageType?.toString().split('.').last;
+    message.experimentName = config.experimentName;
+    message.subPropertyId = config.subPropertyId;
+    message.playerVersion = config.playerVersion;
+    message.playerInitTime = config.playerInitTime?.millisecondsSinceEpoch;
+    message.videoId = config.videoId;
+    message.videoTitle = config.videoTitle;
+    message.videoSeries = config.videoSeries;
+    message.videoVariantName = config.videoVariantName;
+    message.videoVariantId = config.videoVariantId;
+    message.videoLanguageCode = config.videoLanguageCode;
+    message.videoContentType = config.videoContentType;
+    message.videoDuration = config.videoDuration?.inMilliseconds;
+    message.videoStreamType = config.videoStreamType?.toString().split('.').last;
+    message.videoProducer = config.videoProducer;
+    message.videoEncodingVariant = config.videoEncodingVariant;
+    message.videoCdn = config.videoCdn;
+
+    return _api.setupMux(message);
+  }
+
+  @override
   Future<int?> create(DataSource dataSource) async {
     String? asset;
     String? packageName;
@@ -112,24 +141,20 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
 
   @override
   Future<Duration> getPosition(int textureId) async {
-    final PositionMessage response =
-        await _api.position(TextureMessage(textureId: textureId));
+    final PositionMessage response = await _api.position(TextureMessage(textureId: textureId));
     return Duration(milliseconds: response.position);
   }
 
   @override
   Stream<VideoEvent> videoEventsFor(int textureId) {
-    return _eventChannelFor(textureId)
-        .receiveBroadcastStream()
-        .map((dynamic event) {
+    return _eventChannelFor(textureId).receiveBroadcastStream().map((dynamic event) {
       final Map<dynamic, dynamic> map = event as Map<dynamic, dynamic>;
       switch (map['event']) {
         case 'initialized':
           return VideoEvent(
             eventType: VideoEventType.initialized,
             duration: Duration(milliseconds: map['duration'] as int),
-            size: Size((map['width'] as num?)?.toDouble() ?? 0.0,
-                (map['height'] as num?)?.toDouble() ?? 0.0),
+            size: Size((map['width'] as num?)?.toDouble() ?? 0.0, (map['height'] as num?)?.toDouble() ?? 0.0),
           );
         case 'completed':
           return VideoEvent(
@@ -159,16 +184,14 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
 
   @override
   Future<void> setMixWithOthers(bool mixWithOthers) {
-    return _api
-        .setMixWithOthers(MixWithOthersMessage(mixWithOthers: mixWithOthers));
+    return _api.setMixWithOthers(MixWithOthersMessage(mixWithOthers: mixWithOthers));
   }
 
   EventChannel _eventChannelFor(int textureId) {
     return EventChannel('flutter.io/videoPlayer/videoEvents$textureId');
   }
 
-  static const Map<VideoFormat, String> _videoFormatStringMap =
-      <VideoFormat, String>{
+  static const Map<VideoFormat, String> _videoFormatStringMap = <VideoFormat, String>{
     VideoFormat.ss: 'ss',
     VideoFormat.hls: 'hls',
     VideoFormat.dash: 'dash',
