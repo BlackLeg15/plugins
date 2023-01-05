@@ -32,9 +32,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     lintOptions {
-        disable 'AndroidGradlePluginVersion'
         disable 'InvalidPackage'
-        disable 'GradleDependency'
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -43,11 +41,9 @@ android {
 }
 
 dependencies {
-    implementation 'com.google.android.exoplayer:exoplayer-core:2.14.1'
-    implementation 'com.google.android.exoplayer:exoplayer-hls:2.14.1'
-    implementation 'com.google.android.exoplayer:exoplayer-dash:2.14.1'
-    implementation 'com.google.android.exoplayer:exoplayer-smoothstreaming:2.14.1'
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.12.1'
+    implementation 'com.google.android.exoplayer:exoplayer-hls:2.12.1'
+    implementation 'com.google.android.exoplayer:exoplayer-dash:2.12.1'
+    implementation 'com.google.android.exoplayer:exoplayer-smoothstreaming:2.12.1'
     implementation(name: 'mux', ext: 'aar')
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'org.mockito:mockito-inline:3.9.0'
 }
