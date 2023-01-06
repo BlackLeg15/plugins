@@ -16,11 +16,7 @@ dependencies:
     # The example app is bundled with the plugin so we use a path dependency on
     # the parent directory to use the current plugin's version.
     path: ../
-  video_player_platform_interface: 
-    git:
-      url: https://github.com/BlackLeg15/plugins.git
-      path: packages/video_player/video_player_platform_interface
-      ref: feat/updated_video_player
+  video_player_platform_interface: ">=5.1.1 <7.0.0"
 
 dev_dependencies:
   flutter_driver:
