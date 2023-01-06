@@ -1111,6 +1111,11 @@ class FakeVideoPlayerPlatform extends VideoPlayerPlatform {
   }
 
   @override
+  Future<void> setupMux(int textureId, MuxConfig config) async {
+    calls.add('MuxConfigMessage');
+  }
+  
+  @override
   Widget buildView(int textureId) {
     return Texture(textureId: textureId);
   }
