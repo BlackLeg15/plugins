@@ -588,7 +588,7 @@ NS_INLINE UIViewController *rootViewController() {
   }
 }
 
-- (void)setupMux:(FLTMuxConfigMessage*)input error:(FlutterError**)error {
+- (void)setupMux:(FLTMuxConfigMessage*)input error:(FlutterError *_Nullable __autoreleasing *)error {
   FLTVideoPlayer* player = self.playersByTextureId[input.textureId];
 
   AVPlayerViewController* playerViewController = [AVPlayerViewController new];
