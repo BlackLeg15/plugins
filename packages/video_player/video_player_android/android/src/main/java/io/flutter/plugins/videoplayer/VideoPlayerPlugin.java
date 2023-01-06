@@ -8,6 +8,8 @@ import android.content.Context;
 import android.graphics.Point;
 import android.os.Build;
 import android.util.LongSparseArray;
+
+import com.mux.stats.sdk.core.model.CustomerData;
 import com.mux.stats.sdk.core.model.CustomerPlayerData;
 import com.mux.stats.sdk.core.model.CustomerVideoData;
 import com.mux.stats.sdk.muxstats.MuxStatsExoPlayer;
@@ -110,9 +112,9 @@ public class VideoPlayerPlugin implements FlutterPlugin, AndroidVideoPlayerApi {
   }
 
   private void onDestroy() {
-    // if(muxStatsExoPlayer != null){
-    //   muxStatsExoPlayer.release();
-    // }
+    if(muxStatsExoPlayer != null){
+      muxStatsExoPlayer.release();
+    }
     // The whole FlutterView is being destroyed. Here we release resources acquired for all
     // instances
     // of VideoPlayer. Once https://github.com/flutter/flutter/issues/19358 is resolved this may
@@ -165,14 +167,15 @@ public class VideoPlayerPlugin implements FlutterPlugin, AndroidVideoPlayerApi {
     }
     videoPlayers.put(handle.id(), player);
 
-    TextureMessage result = new TextureMessage.Builder().setTextureId(handle.id()).build();
-    return result;
+    return new TextureMessage.Builder().setTextureId(handle.id()).build();
   }
 
   public void setupMux(MuxConfigMessage arg) {
     VideoPlayer player = videoPlayers.get(arg.getTextureId());
     CustomerPlayerData playerData = new CustomerPlayerData();
     CustomerVideoData videoData = new CustomerVideoData();
+
+    CustomerData customerData = new CustomerData();
 
     playerData.setEnvironmentKey(arg.getEnvKey());
     playerData.setPlayerName(arg.getPlayerName());
@@ -229,11 +232,15 @@ public class VideoPlayerPlugin implements FlutterPlugin, AndroidVideoPlayerApi {
     if (arg.getVideoCdn() != null)
       videoData.setVideoCdn(arg.getVideoCdn());
 
-    if (arg.getVideoDuration() != null)
+    if (arg.getVideoDuration() != null) {
       videoData.setVideoDuration(castVideoDuration(arg.getVideoDuration()));
+    }
 
-    //  muxStatsExoPlayer = new MuxStatsExoPlayer(flutterState.applicationContext, player.exoPlayer,
-    //     arg.getPlayerName(), playerData, videoData);
+    customerData.setCustomerVideoData(videoData);
+    customerData.setCustomerPlayerData(playerData);
+
+      muxStatsExoPlayer = new MuxStatsExoPlayer(flutterState.applicationContext, player.exoPlayer,
+         arg.getEnvKey(), customerData);
   }
 
   public void dispose(TextureMessage arg) {
@@ -301,11 +308,11 @@ public class VideoPlayerPlugin implements FlutterPlugin, AndroidVideoPlayerApi {
 
     // The type of object that comes in is dependant on the size of the value.
     if (value instanceof Integer) {
-      videoDuration = new Long((Integer) value);
+      videoDuration = Long.valueOf((Integer) value);
     } else if (value instanceof Short) {
-      videoDuration = new Long((Short) value);
+      videoDuration = Long.valueOf((Short) value);
     } else if (value instanceof Byte) {
-      videoDuration = new Long((Byte) value);
+      videoDuration = Long.valueOf((Byte) value);
     } else {
       videoDuration = (Long) value;
     }

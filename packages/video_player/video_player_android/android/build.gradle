@@ -17,9 +17,10 @@ rootProject.allprojects {
     repositories {
         google()
         mavenCentral()
-
-        flatDir {
-            dirs project(':video_player_android').file('libs')
+        repositories {
+            maven {
+                url "https://muxinc.jfrog.io/artifactory/default-maven-release-local"
+            }
         }
     }
 }
@@ -31,7 +32,7 @@ project.getTasks().withType(JavaCompile){
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
 
     defaultConfig {
         minSdkVersion 16
@@ -61,11 +62,11 @@ android {
 }
 
 dependencies {
+    api 'com.mux.stats.sdk.muxstats:MuxExoPlayer_r2_18_1:2.9.1'
     implementation 'com.google.android.exoplayer:exoplayer-core:2.18.1'
     implementation 'com.google.android.exoplayer:exoplayer-hls:2.18.1'
     implementation 'com.google.android.exoplayer:exoplayer-dash:2.18.1'
     implementation 'com.google.android.exoplayer:exoplayer-smoothstreaming:2.18.1'
-    implementation(name: 'mux', ext: 'aar')
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'androidx.test:core:1.3.0'
     testImplementation 'org.mockito:mockito-inline:4.7.0'
