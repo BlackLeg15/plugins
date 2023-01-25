@@ -214,7 +214,7 @@ class MuxConfigMessage {
   String? videoCdn;
 
   Object encode() {
-    final Map<Object, Object?> pigeonMap = <Object, Object?>{};
+    final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
     pigeonMap['textureId'] = textureId;
     pigeonMap['envKey'] = envKey;
     pigeonMap['playerName'] = playerName;
@@ -240,7 +240,7 @@ class MuxConfigMessage {
   }
 
   static MuxConfigMessage decode(Object message) {
-    final Map<Object, Object> pigeonMap = message as Map<Object, Object>;
+    final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
     return MuxConfigMessage()
       ..textureId = pigeonMap['textureId'] as int?
       ..envKey = pigeonMap['envKey'] as String?
@@ -291,6 +291,9 @@ class _AVFoundationVideoPlayerApiCodec extends StandardMessageCodec {
     } else if (value is VolumeMessage) {
       buffer.putUint8(134);
       writeValue(buffer, value.encode());
+    } else if (value is MuxConfigMessage) {
+      buffer.putUint8(135);
+      writeValue(buffer, value.encode())
     } else {
       super.writeValue(buffer, value);
     }
@@ -319,6 +322,9 @@ class _AVFoundationVideoPlayerApiCodec extends StandardMessageCodec {
 
       case 134:
         return VolumeMessage.decode(readValue(buffer)!);
+
+      case 135:
+        return MuxConfigMessage.decode(readValue(buffer)!);
 
       default:
         return super.readValueOfType(type, buffer);
