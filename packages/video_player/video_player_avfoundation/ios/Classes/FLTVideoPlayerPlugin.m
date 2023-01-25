@@ -619,11 +619,11 @@ NS_INLINE UIViewController *rootViewController() {
     videoData.videoCdn = input.videoCdn;
     videoData.videoDuration = input.videoDuration;
 
-
+    MUXSDKCustomerData *customerData = [[MUXSDKCustomerData alloc] initWithCustomerPlayerData:playerData videoData:videoData viewData:nil customData:nil viewerData:nil];
+        
     [MUXSDKStats monitorAVPlayerViewController:playerViewController
                                 withPlayerName:input.playerName
-                                    playerData:playerData
-                                     videoData:videoData];
+                                    customerData:customerData];
 }
 
 - (void)dispose:(FLTTextureMessage *)input error:(FlutterError **)error {
