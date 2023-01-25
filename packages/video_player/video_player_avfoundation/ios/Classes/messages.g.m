@@ -651,7 +651,7 @@ void FLTAVFoundationVideoPlayerApiSetup(id<FlutterBinaryMessenger> binaryMesseng
                 api);
       [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
         NSArray *args = message;
-        FLTMixWithOthersMessage *arg_msg = GetNullableObjectAtIndex(args, 0);
+        FLTMuxConfigMessage *arg_msg = GetNullableObjectAtIndex(args, 0);
         FlutterError *error;
         [api setupMux:arg_msg error:&error];
         callback(wrapResult(nil, error));
