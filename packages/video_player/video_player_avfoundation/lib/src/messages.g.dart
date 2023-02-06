@@ -293,7 +293,7 @@ class _AVFoundationVideoPlayerApiCodec extends StandardMessageCodec {
       writeValue(buffer, value.encode());
     } else if (value is MuxConfigMessage) {
       buffer.putUint8(135);
-      writeValue(buffer, value.encode())
+      writeValue(buffer, value.encode());
     } else {
       super.writeValue(buffer, value);
     }
