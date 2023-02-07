@@ -402,6 +402,8 @@ class MuxConfig {
     this.videoProducer,
     this.videoEncodingVariant,
     this.videoCdn,
+    this.customData1,
+    this.customData2,
   });
 
   /// Your env key from the Mux dashboard. Note this was previously named property_key
@@ -477,6 +479,12 @@ class MuxConfig {
 
   /// An optional detail that allows you to compare different CDNs (assuming the CDN selection is made at page load time).
   final String? videoCdn;
+  
+  /// An optional data strongly related to the customers of Mux. #1 Custom Data.
+  final String? customData1;
+
+  /// An optional data strongly related to the customers of Mux. #1 Custom Data.
+  final String? customData2;
 }
 
 /// Type of stream to Mux Analytics
