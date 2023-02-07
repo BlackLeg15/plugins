@@ -350,6 +350,9 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
 
     case 134:
       return [FLTVolumeMessage fromMap:[self readValue]];
+    
+    case 135:
+      return [FLTMuxConfigMessage fromMap:[self readValue]]
 
     default:
       return [super readValueOfType:type];
@@ -382,6 +385,9 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
   } else if ([value isKindOfClass:[FLTVolumeMessage class]]) {
     [self writeByte:134];
     [self writeValue:[value toMap]];
+  } else if([value isKindOfClass:[FLTMuxConfigMessage class]]){
+    [self writeByte:135];
+    [self writeValue:[value toMap]]
   } else {
     [super writeValue:value];
   }

@@ -38,11 +38,11 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
     message.envKey = config.envKey;
     message.playerName = config.playerName;
     message.viewerUserId = config.viewerUserId;
-    message.pageType = config.pageType?.toString().split('.').last;
+    message.pageType = config.pageType == null ? null : config.pageType?.toString().split('.').last;
     message.experimentName = config.experimentName;
     message.subPropertyId = config.subPropertyId;
     message.playerVersion = config.playerVersion;
-    message.playerInitTime = config.playerInitTime?.millisecondsSinceEpoch;
+    message.playerInitTime = config.playerInitTime == null ? null : config.playerInitTime?.millisecondsSinceEpoch;
     message.videoId = config.videoId;
     message.videoTitle = config.videoTitle;
     message.videoSeries = config.videoSeries;
@@ -50,8 +50,8 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
     message.videoVariantId = config.videoVariantId;
     message.videoLanguageCode = config.videoLanguageCode;
     message.videoContentType = config.videoContentType;
-    message.videoDuration = config.videoDuration?.inMilliseconds;
-    message.videoStreamType = config.videoStreamType?.toString().split('.').last;
+    message.videoDuration = config.videoDuration == null ? null : config.videoDuration?.inMilliseconds;
+    message.videoStreamType = config.videoStreamType == null ? null : config.videoStreamType?.toString().split('.').last;
     message.videoProducer = config.videoProducer;
     message.videoEncodingVariant = config.videoEncodingVariant;
     message.videoCdn = config.videoCdn;

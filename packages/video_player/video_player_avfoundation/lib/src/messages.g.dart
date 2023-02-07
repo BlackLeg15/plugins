@@ -585,16 +585,14 @@ class AVFoundationVideoPlayerApi {
     }
   }
 
-  Future<void> setupMux(MuxConfigMessage arg) async {
-    final Object encoded = arg.encode();
+  Future<void> setupMux(MuxConfigMessage arg_msg) async {
     final BasicMessageChannel<Object?> channel =
         BasicMessageChannel<Object?>('dev.flutter.pigeon.AVFoundationVideoPlayerApi.setupMux', codec, binaryMessenger: _binaryMessenger);
-    final Map<Object?, Object?>? replyMap = await channel.send(encoded) as Map<Object?, Object?>?;
+    final Map<Object?, Object?>? replyMap = await channel.send(<Object?>[arg_msg]) as Map<Object?, Object?>?;
     if (replyMap == null) {
       throw PlatformException(
         code: 'channel-error',
         message: 'Unable to establish connection on channel.',
-        details: null,
       );
     } else if (replyMap['error'] != null) {
       final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
