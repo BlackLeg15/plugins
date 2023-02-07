@@ -78,6 +78,8 @@ class MuxConfigMessage {
   String? videoProducer;
   String? videoEncodingVariant;
   String? videoCdn;
+  String? customData1;
+  String? customData2;
 }
 
 @HostApi(dartHostTestHandler: 'TestHostVideoPlayerApi')

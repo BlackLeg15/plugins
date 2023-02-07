@@ -174,6 +174,7 @@ public class VideoPlayerPlugin implements FlutterPlugin, AndroidVideoPlayerApi {
     VideoPlayer player = videoPlayers.get(arg.getTextureId());
     CustomerPlayerData playerData = new CustomerPlayerData();
     CustomerVideoData videoData = new CustomerVideoData();
+    CustomData customData = new CustomData();
 
     CustomerData customerData = new CustomerData();
 
@@ -236,8 +237,15 @@ public class VideoPlayerPlugin implements FlutterPlugin, AndroidVideoPlayerApi {
       videoData.setVideoDuration(castVideoDuration(arg.getVideoDuration()));
     }
 
+    if (arg.getCustomData1() != null)
+      customData.setCustomData1(arg.getCustomData1());
+
+    if (arg.getCustomData2() != null)
+      customData.setCustomData2(arg.getCustomData2());
+
     customerData.setCustomerVideoData(videoData);
     customerData.setCustomerPlayerData(playerData);
+    customerData.setCustomData(customData);
 
       muxStatsExoPlayer = new MuxStatsExoPlayer(flutterState.applicationContext, player.exoPlayer,
          arg.getEnvKey(), customerData);

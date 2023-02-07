@@ -212,6 +212,8 @@ class MuxConfigMessage {
   String? videoProducer;
   String? videoEncodingVariant;
   String? videoCdn;
+  String? customData1;
+  String? customData2;
 
   Object encode() {
     final Map<Object, Object?> pigeonMap = <Object, Object?>{};
@@ -236,6 +238,8 @@ class MuxConfigMessage {
     pigeonMap['videoProducer'] = videoProducer;
     pigeonMap['videoEncodingVariant'] = videoEncodingVariant;
     pigeonMap['videoCdn'] = videoCdn;
+    pigeonMap['customData1'] = customData1;
+    pigeonMap['customData2'] = customData2;
     return pigeonMap;
   }
 
@@ -262,7 +266,9 @@ class MuxConfigMessage {
       ..videoStreamType = pigeonMap['videoStreamType'] as String?
       ..videoProducer = pigeonMap['videoProducer'] as String?
       ..videoEncodingVariant = pigeonMap['videoEncodingVariant'] as String?
-      ..videoCdn = pigeonMap['videoCdn'] as String?;
+      ..videoCdn = pigeonMap['videoCdn'] as String?
+      ..customData1 = pigeonMap['customData1'] as String?
+      ..customData2 = pigeonMap['customData2'] as String?;
   }
 }
 

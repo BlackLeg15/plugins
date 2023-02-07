@@ -643,6 +643,14 @@ public class Messages {
     public String getVideoCdn() { return videoCdn; }
     public void setVideoCdn(String setterArg) { this.videoCdn = setterArg; }
 
+    private String customData1;
+    public String getCustomData1() { return customData1; }
+    public void setCustomData1(String setterArg) { this.customData1 = setterArg; }
+
+    private String customData2;
+    public String getCustomData2() { return customData2; }
+    public void setCustomData2(String setterArg) { this.customData2 = setterArg; }
+
     HashMap toMap() {
       HashMap<String, Object> toMapResult = new HashMap<>();
       toMapResult.put("textureId", textureId);
@@ -666,6 +674,8 @@ public class Messages {
       toMapResult.put("videoProducer", videoProducer);
       toMapResult.put("videoEncodingVariant", videoEncodingVariant);
       toMapResult.put("videoCdn", videoCdn);
+      toMapResult.put("customData1", customData1);
+      toMapResult.put("customData2", customData2);
       return toMapResult;
     }
     static MuxConfigMessage fromMap(HashMap map) {
@@ -712,6 +722,10 @@ public class Messages {
       fromMapResult.videoEncodingVariant = (String)videoEncodingVariant;
       Object videoCdn = map.get("videoCdn");
       fromMapResult.videoCdn = (String)videoCdn;
+      Object customData1 = map.get("customData1");
+      fromMapResult.customData1 = (String)customData1;
+      Object customData2 = map.get("customData2");
+      fromMapResult.customData2 = (String)customData2;
       return fromMapResult;
     }
   }

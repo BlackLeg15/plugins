@@ -55,6 +55,8 @@ class AndroidVideoPlayer extends VideoPlayerPlatform {
     message.videoProducer = config.videoProducer;
     message.videoEncodingVariant = config.videoEncodingVariant;
     message.videoCdn = config.videoCdn;
+    message.customData1 = config.customData1;
+    message.customData2 = config.customData2;
 
     return _api.setupMux(message);
   }
