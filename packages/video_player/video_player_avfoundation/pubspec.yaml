@@ -23,7 +23,7 @@ dependencies:
     git:
       url: https://github.com/BlackLeg15/plugins.git
       path: packages/video_player/video_player_platform_interface
-      ref: feat/updated_video_player
+      ref: cded44db04b41aa45ce1bf8adedc443475977770
 
 dev_dependencies:
   flutter_test:
