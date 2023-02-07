@@ -9,6 +9,7 @@ import android.graphics.Point;
 import android.os.Build;
 import android.util.LongSparseArray;
 
+import com.mux.stats.sdk.core.model.CustomData;
 import com.mux.stats.sdk.core.model.CustomerData;
 import com.mux.stats.sdk.core.model.CustomerPlayerData;
 import com.mux.stats.sdk.core.model.CustomerVideoData;
