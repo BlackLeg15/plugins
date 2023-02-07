@@ -318,10 +318,18 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
   if ((NSNull *)result.videoCdn == [NSNull null]) {
     result.videoCdn = nil;
   }
+  result.customData1 = dict[@"customData1"];
+  if ((NSNull *)result.customData1 == [NSNull null]) {
+    result.customData1 = nil;
+  }
+  result.customData2 = dict[@"customData2"];
+  if ((NSNull *)result.customData2 == [NSNull null]) {
+    result.customData2 = nil;
+  }
   return result;
 }
 -(NSDictionary*)toMap {
-  return [NSDictionary dictionaryWithObjectsAndKeys:(self.textureId ? self.textureId : [NSNull null]), @"textureId", (self.envKey ? self.envKey : [NSNull null]), @"envKey", (self.playerName ? self.playerName : [NSNull null]), @"playerName", (self.viewerUserId ? self.viewerUserId : [NSNull null]), @"viewerUserId", (self.pageType ? self.pageType : [NSNull null]), @"pageType", (self.experimentName ? self.experimentName : [NSNull null]), @"experimentName", (self.subPropertyId ? self.subPropertyId : [NSNull null]), @"subPropertyId", (self.playerVersion ? self.playerVersion : [NSNull null]), @"playerVersion", (self.playerInitTime ? self.playerInitTime : [NSNull null]), @"playerInitTime", (self.videoId ? self.videoId : [NSNull null]), @"videoId", (self.videoTitle ? self.videoTitle : [NSNull null]), @"videoTitle", (self.videoSeries ? self.videoSeries : [NSNull null]), @"videoSeries", (self.videoVariantName ? self.videoVariantName : [NSNull null]), @"videoVariantName", (self.videoVariantId ? self.videoVariantId : [NSNull null]), @"videoVariantId", (self.videoLanguageCode ? self.videoLanguageCode : [NSNull null]), @"videoLanguageCode", (self.videoContentType ? self.videoContentType : [NSNull null]), @"videoContentType", (self.videoDuration ? self.videoDuration : [NSNull null]), @"videoDuration", (self.videoStreamType ? self.videoStreamType : [NSNull null]), @"videoStreamType", (self.videoProducer ? self.videoProducer : [NSNull null]), @"videoProducer", (self.videoEncodingVariant ? self.videoEncodingVariant : [NSNull null]), @"videoEncodingVariant", (self.videoCdn ? self.videoCdn : [NSNull null]), @"videoCdn", nil];
+  return [NSDictionary dictionaryWithObjectsAndKeys:(self.textureId ? self.textureId : [NSNull null]), @"textureId", (self.envKey ? self.envKey : [NSNull null]), @"envKey", (self.playerName ? self.playerName : [NSNull null]), @"playerName", (self.viewerUserId ? self.viewerUserId : [NSNull null]), @"viewerUserId", (self.pageType ? self.pageType : [NSNull null]), @"pageType", (self.experimentName ? self.experimentName : [NSNull null]), @"experimentName", (self.subPropertyId ? self.subPropertyId : [NSNull null]), @"subPropertyId", (self.playerVersion ? self.playerVersion : [NSNull null]), @"playerVersion", (self.playerInitTime ? self.playerInitTime : [NSNull null]), @"playerInitTime", (self.videoId ? self.videoId : [NSNull null]), @"videoId", (self.videoTitle ? self.videoTitle : [NSNull null]), @"videoTitle", (self.videoSeries ? self.videoSeries : [NSNull null]), @"videoSeries", (self.videoVariantName ? self.videoVariantName : [NSNull null]), @"videoVariantName", (self.videoVariantId ? self.videoVariantId : [NSNull null]), @"videoVariantId", (self.videoLanguageCode ? self.videoLanguageCode : [NSNull null]), @"videoLanguageCode", (self.videoContentType ? self.videoContentType : [NSNull null]), @"videoContentType", (self.videoDuration ? self.videoDuration : [NSNull null]), @"videoDuration", (self.videoStreamType ? self.videoStreamType : [NSNull null]), @"videoStreamType", (self.videoProducer ? self.videoProducer : [NSNull null]), @"videoProducer", (self.videoEncodingVariant ? self.videoEncodingVariant : [NSNull null]), @"videoEncodingVariant", (self.videoCdn ? self.videoCdn : [NSNull null]), @"videoCdn", (self.customData1 ? self.customData1 : [NSNull null]), @"customData1", (self.customData2 ? self.customData2 : [NSNull null]), @"customData2", nil];
 }
 @end
 

@@ -103,6 +103,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy, nullable) NSString * videoProducer;
 @property(nonatomic, copy, nullable) NSString * videoEncodingVariant;
 @property(nonatomic, copy, nullable) NSString * videoCdn;
+@property(nonatomic, copy, nullable) NSString * customData1;
+@property(nonatomic, copy, nullable) NSString * customData2;
 @end
 
 /// The codec used by FLTAVFoundationVideoPlayerApi.

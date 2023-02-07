@@ -618,8 +618,12 @@ NS_INLINE UIViewController *rootViewController() {
     videoData.videoEncodingVariant = input.videoEncodingVariant;
     videoData.videoCdn = input.videoCdn;
     videoData.videoDuration = input.videoDuration;
+    
+    MUXSDKCustomData *customData = [[MUXSDKCustomData alloc] init];
+    [customData setCustomData1:input.customData1];
+    [customData setCustomData2:input.customData2];
 
-    MUXSDKCustomerData *customerData = [[MUXSDKCustomerData alloc] initWithCustomerPlayerData:playerData videoData:videoData viewData:nil customData:nil viewerData:nil];
+    MUXSDKCustomerData *customerData = [[MUXSDKCustomerData alloc] initWithCustomerPlayerData:playerData videoData:videoData viewData:nil customData:customData viewerData:nil];
         
     [MUXSDKStats monitorAVPlayerViewController:playerViewController
                                 withPlayerName:input.playerName
