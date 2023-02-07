@@ -27,22 +27,18 @@ dependencies:
     git:
       url: https://github.com/BlackLeg15/plugins.git
       path: packages/video_player/video_player_android
-      ref: feat/updated_video_player
   video_player_avfoundation: 
     git:
       url: https://github.com/BlackLeg15/plugins.git
       path: packages/video_player/video_player_avfoundation
-      ref: feat/updated_video_player
   video_player_platform_interface: 
     git:
       url: https://github.com/BlackLeg15/plugins.git
       path: packages/video_player/video_player_platform_interface
-      ref: feat/updated_video_player
   video_player_web: 
     git:
       url: https://github.com/BlackLeg15/plugins.git
       path: packages/video_player/video_player_web
-      ref: feat/updated_video_player
 
 dev_dependencies:
   flutter_test:
