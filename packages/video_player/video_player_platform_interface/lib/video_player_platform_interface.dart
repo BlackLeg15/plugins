@@ -490,7 +490,7 @@ class MuxConfig {
 /// Type of stream to Mux Analytics
 enum MuxVideoStreamType {
   /// It's a live stream
-  live,
+  livestream,
 
   /// It's an on-demand video
   onDemand,
